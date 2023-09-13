@@ -117,11 +117,11 @@ function add(a,b)
 console.log(add(2,3));
 
 // 4. Using Function Expression create a function which will multiply two numbers.
-function multiply(a,b)
+var ex=function multiply(a,b)
 {
     return a*b;
 }
-console.log(3,4);
+console.log(ex(3,4));
 
 // 5. Using Arrow Function create a function to subtract two numbers.
 const sub=(a,b)=>{

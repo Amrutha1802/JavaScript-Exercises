@@ -26,10 +26,10 @@ var x = (function() {
     var a = 12;
   };
   return function() {
-    console.log(a);// output : 10
+    console.log(a);
   }
 })();
-x();
+x();//output : 12
 
 var a = 10;
 var x = (function() {
@@ -72,6 +72,24 @@ function clone(arr)
 const arr1=[1,2,3,4,5];
 const cloneArr=clone(arr1);
 console.log(cloneArr);
+
+//using slice method
+function clone1(arr)
+{
+  return arr.slice();
+}
+const ar=[1,2,3,4,5];
+const cloneAr1=clone1(ar);
+console.log(cloneAr1);
+
+//using spread operator
+function clone1(arr)
+{
+  return [...arr];
+}
+const ar1=[1,2,3,4,5];
+const cloneAr2=clone1(ar1);
+console.log(cloneAr2);
 
 // 3. Breifly explain the below Array methods with examples
 // shift, unshift, slice, splice, pop
