@@ -1,6 +1,20 @@
-let obj={one:1,two:2};
-let copy={...obj};
-console.log(copy);
-copy.two=3;
-console.log(copy);
-console.log(obj);
+function download(url, callback) {
+    setTimeout(() => {
+        // script to download the picture here
+        console.log(`Downloading ${url} ...`);
+        // process the picture once it is completed
+        callback(url);
+
+    }, 0);
+}
+console.log("hiii");
+console.log("hiii");
+let url = 'https://www.javascripttutorial.net/pic.jpg';
+download(url, function(picture) {
+    console.log(`Processing ${picture}`);
+}); 
+console.log("hiii");
+console.log("hiii");
+console.log("hiii");
+console.log("hiii");
+console.log("hiii");
