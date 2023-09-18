@@ -26,10 +26,10 @@ var x = (function() {
     var a = 12;
   };
   return function() {
-    console.log(a);
+    console.log(a);   //output : 12
   }
 })();
-x();//output : 12
+x();
 
 var a = 10;
 var x = (function() {
@@ -64,15 +64,6 @@ myFunction(arr);
 console.log(arr);//shows outpur : ['one','two','four']
 
 // 2. Write a Javascript function to clone an array without using loops.
-
-function clone(arr)
-{
-    return arr;
-}
-const arr1=[1,2,3,4,5];
-const cloneArr=clone(arr1);
-console.log(cloneArr);
-
 //using slice method
 function clone1(arr)
 {
@@ -90,6 +81,15 @@ function clone1(arr)
 const ar1=[1,2,3,4,5];
 const cloneAr2=clone1(ar1);
 console.log(cloneAr2);
+function clone(arr)
+{
+    return arr;
+}
+const arr1=[1,2,3,4,5];
+const cloneArr=clone(arr1);
+console.log(cloneArr);
+
+
 
 // 3. Breifly explain the below Array methods with examples
 // shift, unshift, slice, splice, pop

@@ -114,33 +114,12 @@ function processData(inputArray) {
 // Fulfilled: When the asynchronous operation t represents is successfully completed. This typically means that the desired result or value is now available, and the promise can deliver this value to any registered .then() handlers.
 // Rejected: If an error occurs during the execution of the asynchronous operation, the promise transitions to the rejected state. In this state, the promise contains information about the error, and it can pass this error to any registered .catch() or .then() handlers with an error callback.
 // 2. Using promise to create a delayedLowerCase function which will transform a string to lower case after 5 seconds. Ex Input: ""BEAUTIFUL CODE"" Output: ""beautiful code""
-function delayedLowerCase(input) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (typeof input === 'string') {
-          resolve(input.toLowerCase());
-        } else {
-          reject(new Error('Input is not a string'));
-        }
-      }, 5000); 
-    });
-  }
-  
-  // Calling the function
-  delayedLowerCase("BEAUTIFUL CODE")
-    .then(result => {
-      console.log(result); 
-    })
-    .catch(error => {
-      console.error(error);
-    });
-
-// 3. Briefly explain Promise Chaining. For the above created delayedLowerCase function chain a promise which will print the string and its length: Ex: Input: ""Beautiful Code""  Output: ""beautiful code - 14"""
-//Promise chaining is a technique in JavaScript that allows you to sequentially execute multiple asynchronous operations, one after the other, using promises. It involves using the .then() method to attach additional actions to a promise's resolution, effectively creating a chain of asynchronous tasks.
 const my_promise=function delayedLowerCase(input) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (typeof input === 'string') {
+        input=input.toLowerCase();
+        console.log(input);
         resolve(input.toLowerCase());
       } else {
         reject(new Error('Input is not a string'));
@@ -148,20 +127,24 @@ const my_promise=function delayedLowerCase(input) {
     }, 5000); 
   });
 }
+my_promise("BEAUTIFUL CODE");
 
-my_promise("BEAUTIFUL CODE")
-  .then(result => {
-    return result;
-  })
-  .then(result => {
-    console.log(result+'-'+result.length); 
-  })
-  .catch(error => {
-    console.error(error);
+// 3. Briefly explain Promise Chaining. For the above created delayedLowerCase function chain a promise which will print the string and its length: Ex: Input: ""Beautiful Code""  Output: ""beautiful code - 14"""
+//Promise chaining is a technique in JavaScript that allows you to sequentially execute multiple asynchronous operations, one after the other, using promises. It involves using the .then() method to attach additional actions to a promise's resolution, effectively creating a chain of asynchronous tasks.
+const my_promise2=function delayedLowerCase(input) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (typeof input === 'string') {
+        input=input.toLowerCase();
+        //console.log(input);
+        resolve(input.toLowerCase());
+      } else {
+        reject(new Error('Input is not a string'));
+      }
+    }, 5000); 
   });
-
-  
-my_promise("BEAUTIFUL CODE")
+}
+my_promise2("BEAUTIFUL CODE")
   .then(result => {
     new Promise((resolve,reject)=>{
       setTimeout(()=>{console.log(result+'-'+result.length)},1000);
@@ -172,7 +155,6 @@ my_promise("BEAUTIFUL CODE")
   });
 
 // 1. Rewrite the below using Async-Await syntax
-// ```
 // function getProcessedData(url) {
 //   return downloadData(url) // returns a promise
 //     .catch(e => {
@@ -191,8 +173,17 @@ try {
   return processDataInWorker(data);
 }
 
-//
-///
+async function getProcessedData(url) {
+  try {
+      await downloadData(url) // returns a promise
+      await processDataInWorker(v)  // returns a promise
+  } 
+  catch(e) {
+      return downloadFallbackData(url)
+  }
+}
+
+
 //function to display lowercase of a string
 function delayedLowerCase(input)
 {
@@ -238,12 +229,12 @@ async function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function delayedLowerCase(input) {
-  await wait(5000); // Wait for 10 seconds
+  await wait(5000); // Wait for 5 seconds
   const result = toLowerCase(input);
   console.log(result);
 }
 // Calling the function
-delayedLowerCase('BeautifulCODE');
+delayedLowerCase('BEAUTIFUL CODE');
 
 
 //Process Data function using callbacks,Promises and async-await
@@ -286,7 +277,7 @@ function fetchData() {
     }, 1000);
   }
   
-  function processDataUsingCallbacks(callback) {
+  function processData(callback) {
     console.log("Performing processData function");
     fetchData(data => {
       transformData(data, result => {
@@ -295,7 +286,7 @@ function fetchData() {
     });
   }
   
-  processDataUsingCallbacks(result => {
+  processData(result => {
     console.log(result); 
   });
   
@@ -320,19 +311,19 @@ function fetchData() {
     });
   }
   
-  function processDataUsingPromises() {
+  function processData() {
     console.log("Performing processData function");
     return fetchData()
       .then(data => transformData(data))
       .then(result => result);
   }
   
-  processDataUsingPromises().then(result => {
+  processData().then(result => {
     console.log(result); 
   });
   
   //using await and async functions
-  async function fetchDataAsync() {
+  async function fetchData() {
     console.log('In fetchData function');
     return new Promise(resolve => {
       setTimeout(() => {
@@ -342,7 +333,7 @@ function fetchData() {
     });
   }
   
-  async function transformDataAsync(data) {
+  async function transformData(data) {
     console.log("In transformData function");
     return new Promise(resolve => {
       setTimeout(() => {
@@ -352,14 +343,14 @@ function fetchData() {
     });
   }
   
-  async function processDataUsingAsyncAwait() {
+  async function processData() {
     console.log("Performing processData function");
-    const data = await fetchDataAsync();
-    const result = await transformDataAsync(data);
+    const data = await fetchData();
+    const result = await transformData(data);
     return result;
   }
   
-  processDataUsingAsyncAwait().then(result => {
+  processData().then(result => {
     console.log(result); 
   });
 
